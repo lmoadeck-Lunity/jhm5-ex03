@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-first-worker3",
+	"name": "jhm5-cw-sample",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-09-13",
 	"observability": {
