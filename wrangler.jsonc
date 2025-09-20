@@ -6,9 +6,27 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "jhm5-cw-sample",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-09-13",
+	"compatibility_date": "2025-09-06",
 	"observability": {
 		"enabled": true
+	},
+	/**
+	 * KV Bindings
+	 * https://developers.cloudflare.com/workers/runtime-apis/kv/
+	 */
+	"kv_namespaces": [
+		{
+			"binding": "TODO_STORAGE",
+			"id": "863585ba5fe64a649ede4e0f560d168c"
+		}
+	],
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	"assets": {
+		"directory": "./public/",
+		"binding": "ASSETS"
 	}
 	/**
 	 * Smart Placement

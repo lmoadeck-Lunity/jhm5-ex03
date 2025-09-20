@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanilla To-Do</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Standalone vanilla JS To-Do / Kanban app migrated from React version." />
+</head>
+<body class="app light">
+  <header class="app-header">
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu" tabindex="0">☰</div>
+    <h1>To-Do List</h1>
+    <div class="header-actions">
+      <button id="addTaskBtn" class="add-task-btn" type="button" aria-haspopup="dialog">
+        <svg width="16" height="16" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+          <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+        </svg>
+        Add Task
+      </button>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
+  </header>
+  <div class="app-body">
+    <div class="overlay" id="overlay" hidden></div>
+    <nav class="sidebar" id="sidebar" aria-label="Main navigation">
+      <ul>
+        <li data-view="dashboard" tabindex="0">Dashboard</li>
+        <li data-view="statistics" tabindex="0">Statistics</li>
+        <li data-view="settings" tabindex="0">Settings</li>
+      </ul>
+    </nav>
+    <main class="main-content" id="main"></main>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div class="modal-overlay" id="taskModal" hidden>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Task</h2>
+        <button class="modal-close" id="closeModalBtn" aria-label="Close modal">
+          <svg width="16" height="16" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="taskForm" novalidate>
+          <input type="hidden" name="taskId" id="taskId" />
+          <div class="form-group">
+            <label for="titleInput">Title *</label>
+            <input id="titleInput" name="title" required maxlength="100" placeholder="Enter task title" />
+            <span class="error-message" data-error-for="title" hidden></span>
+          </div>
+          <div class="form-group">
+            <label for="descriptionInput">Description</label>
+            <textarea id="descriptionInput" name="description" rows="3" maxlength="500" placeholder="Enter task description"></textarea>
+            <span class="error-message" data-error-for="description" hidden></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prioritySelect">Priority *</label>
+              <select id="prioritySelect" name="priority" required>
+                <option value="">Select priority</option>
+              </select>
+              <span class="error-message" data-error-for="priority" hidden></span>
+            </div>
+            <div class="form-group">
+              <label for="dueDateInput">Due Date</label>
+              <input type="date" id="dueDateInput" name="dueDate" />
+              <span class="error-message" data-error-for="dueDate" hidden></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tagsInput">Tags</label>
+            <input id="tagsInput" name="tags" placeholder="Enter tags separated by commas (max 10 tags, 20 chars each)" />
+            <span class="error-message" data-error-for="tags" hidden></span>
+            <small class="form-help">Separate multiple tags with commas</small>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="cancelModalBtn">Cancel</button>
+            <button type="submit" class="btn-primary" id="submitTaskBtn">Add Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+  <!--
+    Migrated from React (tdl) to vanilla (tod) on 2025-09-20.
+    Features: CRUD tasks, tags filter, priorities, Kanban board, statistics, settings, theme toggle.
+  -->
+</body>
+</html>

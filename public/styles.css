@@ -1,0 +1,132 @@
+/* Core theme variables (mirrors original) */
+:root {
+  --light-bg: #f5f5f5;
+  --light-text: #333333;
+  --dark-bg: #1c1c1c;
+  --dark-text: #e0e0e0;
+}
+
+body,html {margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;}
+
+/* Ensure any element with hidden attribute is fully removed from layout */
+[hidden] { display: none !important; }
+
+.app {display:flex;flex-direction:column;min-height:100vh;}
+.app.light {background:var(--light-bg);color:var(--light-text);} 
+.app.dark {background:var(--dark-bg);color:var(--dark-text);} 
+
+.app-header {display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border-bottom:1px solid #ccc;}
+.app.dark .app-header {border-bottom-color:#555;}
+.header-actions {display:flex;align-items:center;gap:1rem;}
+.hamburger {display:none;font-size:24px;cursor:pointer;}
+
+.add-task-btn {display:flex;align-items:center;gap:.5rem;background:#007bff;color:#fff;border:none;padding:.75rem 1rem;border-radius:8px;font-size:.9rem;cursor:pointer;}
+.add-task-btn:hover {background:#0056b3;}
+.app.dark .add-task-btn {background:#0056b3;} .app.dark .add-task-btn:hover {background:#004085;}
+.theme-toggle {background:none;border:none;cursor:pointer;padding:.5rem;border-radius:50%;}
+.theme-toggle:hover {background:rgba(0,0,0,.1);} .app.dark .theme-toggle:hover {background:rgba(255,255,255,.1);} 
+.theme-toggle::before {content:"🌞";display:block;font-size:18px;}
+.app.dark .theme-toggle::before {content:"🌙";}
+
+.app-body {display:flex;flex:1;}
+.sidebar {width:200px;border-right:1px solid #ccc;padding:20px;}
+.app.dark .sidebar {border-right-color:#555;}
+.sidebar ul {margin:0;padding:0;list-style:none;}
+.sidebar li {padding:10px;cursor:pointer;border-radius:5px;}
+.sidebar li:hover {background:#eee;} .app.dark .sidebar li:hover {background:#404040;}
+.main-content {flex:1;padding:20px;overflow-y:auto;}
+
+/* Filters */
+.filters {display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:20px;align-items:flex-start;}
+.filters select {padding:8px;}
+.tag-filters {display:flex;flex-direction:column;gap:.5rem;}
+.filter-label {font-weight:500;font-size:.9rem;}
+.tag-filter-options {display:flex;flex-wrap:wrap;gap:.5rem;}
+.tag-filter-btn, .clear-tags-btn {padding:.4rem .8rem;border:2px solid #e0e0e0;border-radius:20px;background:#fff;color:#666;cursor:pointer;font-size:.8rem;font-weight:500;}
+.tag-filter-btn:hover {border-color:#007bff;background:#f8f9ff;}
+.tag-filter-btn.active {background:#007bff;color:#fff;border-color:#007bff;}
+.clear-tags-btn {border-color:#dc3545;color:#dc3545;}
+.clear-tags-btn:hover {background:#dc3545;color:#fff;}
+.app.dark .tag-filter-btn {background:#2a2a2a;border-color:#555;color:#aaa;}
+.app.dark .tag-filter-btn:hover {border-color:#0056b3;background:#1a1a2e;}
+.app.dark .tag-filter-btn.active {background:#0056b3;color:#fff;border-color:#0056b3;}
+.app.dark .clear-tags-btn {background:#2a2a2a;}
+.app.dark .clear-tags-btn:hover {background:#dc3545;}
+
+/* Board */
+.task-board {display:flex;gap:20px;align-items:flex-start;min-width:min-content;overflow-x:auto;}
+.task-column {flex:1;min-width:360px;background:#f1f1f1;padding:15px;border-radius:5px;}
+.app.dark .task-column {background:#2a2a2a;}
+.task-column h2 {margin-top:0;padding-bottom:10px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:.5rem;cursor:pointer;user-select:none;}
+.app.dark .task-column h2 {border-bottom-color:#444;}
+.task-count {font-size:.8em;font-weight:normal;color:#666;background:#f0f0f0;padding:.2rem .5rem;border-radius:12px;min-width:1.5rem;text-align:center;}
+.app.dark .task-count {color:#aaa;background:#404040;}
+.task-list .task-item {padding:15px;border:1px solid #ccc;border-radius:5px;margin-bottom:10px;background:#fff;animation:fadeIn .5s;} 
+.app.dark .task-item {background:#2a2a2a;border-color:#555;}
+
+/* Task item */
+.task-item {overflow:hidden;transition:all .3s ease;}
+.task-item.collapsed .task-content {display:none;}
+.task-header {display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:.5rem;}
+.app.dark .task-header {border-bottom-color:#555;}
+.task-header h3 {margin:0;font-size:1.1em;}
+.task-description {min-height:60px;max-height:200px;overflow-y:auto;padding:10px;border:1px solid #eee;border-radius:4px;background:#f9f9f9;margin-bottom:10px;line-height:1.4;white-space:pre-wrap;}
+.app.dark .task-description {background:#1a1a1a;border-color:#404040;color:var(--dark-text);}
+.tags .tag {padding:3px 8px;border-radius:3px;background:#eee;margin-right:5px;font-size:12px;}
+.app.dark .tags .tag {background:#404040;color:var(--dark-text);}
+.task-actions {margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.status-buttons {display:flex;gap:5px;}
+.status-btn {background:#e9ecef;border:1px solid #dee2e6;padding:5px 10px;border-radius:4px;cursor:pointer;}
+.status-btn.active[data-status="Done"] {background:#4FFF72;color:#000;border-color:#4FFF72;}
+.status-btn.active[data-status="In Progress"] {background:#BF9346;color:#fff;border-color:#BF9346;}
+
+/* Modal */
+.modal-overlay {position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1rem;}
+.modal-content {background:var(--light-bg);border-radius:12px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.2);} 
+.app.dark .modal-content {background:var(--dark-bg);color:var(--dark-text);} 
+.modal-header {display:flex;justify-content:space-between;align-items:center;padding:1.5rem 1.5rem 0 1.5rem;border-bottom:1px solid #e0e0e0;margin-bottom:1.5rem;} 
+.app.dark .modal-header {border-bottom-color:#404040;} 
+.modal-body {padding:0 1.5rem 1.5rem 1.5rem;} 
+.form-group {margin-bottom:1rem;} 
+.form-row {display:grid;grid-template-columns:1fr 1fr;gap:1rem;} 
+.form-group label {display:block;margin-bottom:.5rem;font-weight:500;} 
+.form-group input, .form-group textarea, .form-group select {width:100%;padding:.75rem;border:1px solid #d0d0d0;border-radius:6px;font-size:.9rem;background:#fff;color:inherit;}
+.form-group textarea {resize:vertical;min-height:80px;} 
+.error-message {color:#dc3545;font-size:.8rem;margin-top:.25rem;display:block;} 
+.modal-actions {display:flex;justify-content:flex-end;gap:.75rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #e0e0e0;} 
+.btn-cancel,.btn-primary {padding:.75rem 1.5rem;border-radius:6px;font-size:.9rem;cursor:pointer;border:none;} 
+.btn-cancel {background:#f8f9fa;color:#6c757d;border:1px solid #d0d0d0;} 
+.btn-primary {background:#007bff;color:#fff;} 
+.btn-cancel:hover {background:#e9ecef;} 
+.btn-primary:hover {background:#0056b3;} 
+
+/* Settings / Stats */
+.settings-section,.statistics-section {margin-bottom:30px;padding:20px;border:1px solid #ccc;border-radius:5px;background:#fff;} 
+.app.dark .settings-section, .app.dark .statistics-section {background:#2a2a2a;border-color:#555;} 
+.add-item-form {display:flex;gap:10px;margin-bottom:20px;} 
+.add-item-form input {flex:1;} 
+.add-btn {background:#007bff;color:#fff;border:none;border-radius:5px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;justify-content:center;min-width:40px;min-height:40px;} 
+.add-btn:hover {background:#0056b3;} 
+.items-list {display:flex;flex-wrap:wrap;gap:10px;} 
+.item-pill {display:flex;align-items:center;background:#f1f1f1;border-radius:15px;padding:5px 12px;font-size:14px;} 
+.item-pill span {margin-right:8px;} 
+.delete-btn {background:none;border:none;color:#999;cursor:pointer;font-size:18px;line-height:1;padding:0;} 
+.delete-btn:hover {color:#dc3545;} 
+
+.summary-card {display:flex;justify-content:space-around;background:#f9f9f9;padding:20px;border-radius:5px;margin-bottom:20px;} 
+.app.dark .summary-card {background:#2a2a2a;} 
+.charts {display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px;} 
+.chart {text-align:center;}
+
+/* Responsive */
+@media (max-width:768px){
+  .hamburger {display:block;}
+  .sidebar {position:fixed;top:0;left:-250px;width:250px;height:100%;background:var(--light-bg);z-index:1000;padding-top:60px;transition:left .3s ease;}
+  .app.dark .sidebar {background:var(--dark-bg);} 
+  .sidebar.open {left:0;}
+  .overlay {position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;} 
+  .task-board {flex-direction:column;gap:10px;} 
+  .form-row {grid-template-columns:1fr;} 
+}
+
+@keyframes fadeIn {from{opacity:0} to{opacity:1}}
